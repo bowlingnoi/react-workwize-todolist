@@ -11,7 +11,7 @@ class TodoList extends Component {
     return (
       <div>
         <p>{this.props.countCompleteItem()} Completed
-          <span className="pull-right"
+          <span className="btn pull-right"
             onClick={this.props.onHideCompleteList}
           >{this.props.isHide ? 'Show' : 'Hide' }</span>
         </p>

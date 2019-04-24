@@ -25,12 +25,23 @@
 }
 
 .form-control{
-  width: 90%;
+  width: 92%;
   display: inline-block;
   border: 0 none;
-  border-bottom: 1px solid #ccc;
+  margin: 0 1%;
   border-radius: 0;
   box-shadow: none;
+}
+.form-control:focus{
+  box-shadow: none;
+}
+
+.list-group-item input{
+  vertical-align: middle;
+}
+.list-group-item i{
+  font-size: 18px;
+  vertical-align: middle;
 }
 
 @keyframes App-logo-spin {

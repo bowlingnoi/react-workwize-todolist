@@ -5,14 +5,18 @@ class ListItem extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            showDelete: true
+            showDelete: false
         };
     }
-
-    handleKeyDown = (event) => {
+    
+    handleKeyDown = (event,key) => {
         if (event.key == 'Enter') {
             this.props.onCreateNewItem()
         }
+    }
+    handleInputFocus = (event) => {
+        event.preventDefault()
+        event.stopPropagation()
     }
 
     renderTaskInput() {
@@ -22,31 +26,46 @@ class ListItem extends Component {
                 name={this.props.key}
                 value={this.props.title}
                 onChange={(event) => this.props.onEditTask(event, this.props.key)}
-                onKeyDown={this.handleKeyDown} />
+                onClick={() => this.props.onToggleListItem(this.props.key)} 
+                onKeyDown={ this.handleKeyDown }
+                autoFocus
+            />
         )
     }
 
     renderDeleteButton( key ) {
         return (
-            <i className="fa fa-times-circle text-danger"
+            <i className={ this.state.showDelete ? 'fa fa-times-circle text-danger' : 'fa fa-times-circle text-danger hide' }
                 onClick={ (e) => this.props.onDeleteTask(e,key) }
             ></i>
         )
     }
 
-    render() {
+    onShowDeleteList = () => {
+        this.setState({
+            showDelete: true
+        })
+    }
+    onHideDeleteList = () => {
+        this.setState({
+            showDelete: false
+        })
+    }
 
+    render() {
         return ( isNull(this.props.list) ) ? null : (
             <li className={ (this.props.isHide && this.props.isCompleted) ? 'list-group-item hide' : 'list-group-item' }
                 key={this.props.key}
-                onClick={ () => this.props.onToggleListItem(this.props.key) } 
+                onMouseOut={this.onHideDeleteList}
+                onMouseMove={this.onShowDeleteList}
             >
                 <input type="checkbox"
                     name="checklist"
                     checked={this.props.isCompleted ? 'checked' : ''}
-                    onChange={(event) => this.props.onToggleCompletedList(event, this.props.key)} />
+                    onChange={(event) => this.props.onToggleCompletedList(event, this.props.key)}
+                />
                 { this.renderTaskInput() }
-                { ( this.state.showDelete ) ? this.renderDeleteButton( this.props.key ) : null }
+                { this.renderDeleteButton( this.props.key ) }
             </li> 
         );
   }

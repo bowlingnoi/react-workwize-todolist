@@ -9,8 +9,8 @@ class App extends Component {
     super(props);
     this.state = {
       lists: [{
-        title: 'Task 1',
-        isCompleted: true,
+        title: 'Task #1',
+        isCompleted: false,
       }],
       isHide: false
     }
@@ -84,7 +84,6 @@ class App extends Component {
     this.setState({
       isHide: !this.state.isHide
     })
-
   }
 
   render() {
