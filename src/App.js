@@ -16,12 +16,22 @@ class App extends Component {
     }
   }
 
+  // In class 
+  state = {
+    lists: [
+
+    ]
+
+  }
+
   componentDidMount() {
     this.countCompleteItem()
   }
 
   onCreateNewItem = () => {
-    console.log( 'onCreateTask')
+    console.log('onCreateTask')
+    // By Me
+
     const newList = this.state.lists
     newList.push({
       title: "",
@@ -30,6 +40,13 @@ class App extends Component {
     this.setState({
       lists: newList
     })
+
+
+    // In class 
+    // this.setState( ({ list }) => ({
+    //   list: [...list, { title: `Task $(lastid)`, isComplete: false, id: lastId }],
+    //   lastId: lastId+1
+    // }))
   }
 
   onEditTask = (event, key) => {
@@ -46,8 +63,11 @@ class App extends Component {
     const result = lists.reduce((cnt, value) => { 
       return (value.isCompleted == true) ? cnt + 1 : cnt
     }, 0)
-
+    
     return result
+
+    // In class  : error 
+    // const result = lists.filter( (item) => item.completeed ).length
   }
 
   onToggleListItem = (key) => {
@@ -57,6 +77,14 @@ class App extends Component {
     this.setState({
       lists: newList
     })
+
+    // In class : npm install lodash
+    // this.setState(({ list }) => {
+    //   const newList = _.cloneDeep(list)   // use library lodash
+    //   const selectedItem = newList.find((item) => {
+    //     item.id = 
+    //   })
+    // } )
   }
 
   onToggleCompletedList = (event, key) => {
@@ -87,6 +115,9 @@ class App extends Component {
   }
 
   render() {
+    // const { lists , showComplete } = this.state
+
+
     return (
       <div className="App">
         <Header title="To Do List" onCreateNewItem={this.onCreateNewItem} />

@@ -36,7 +36,8 @@ class ListItem extends Component {
     renderDeleteButton( key ) {
         return (
             <i className={ this.state.showDelete ? 'fa fa-times-circle text-danger' : 'fa fa-times-circle text-danger hide' }
-                onClick={ (e) => this.props.onDeleteTask(e,key) }
+                style={{ cursor: 'pointer'}}
+                onClick={(e) => this.props.onDeleteTask(e, key)}
             ></i>
         )
     }
@@ -61,9 +62,13 @@ class ListItem extends Component {
             >
                 <input type="checkbox"
                     name="checklist"
+                    style={{ display: 'none' }}
                     checked={this.props.isCompleted ? 'checked' : ''}
                     onChange={(event) => this.props.onToggleCompletedList(event, this.props.key)}
                 />
+                <span className="" style={{ fontSize: '11px' }}>
+                    {this.props.isCompleted ? <i className="far fa-check-circle text-success"></i> : <i className="far fa-check-circle" style={{color: '#ccc'}}></i>}
+                </span>
                 { this.renderTaskInput() }
                 { this.renderDeleteButton( this.props.key ) }
             </li> 

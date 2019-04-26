@@ -10,8 +10,9 @@ class TodoList extends Component {
   render() {
     return (
       <div>
-        <p>{this.props.countCompleteItem()} Completed
-          <span className="btn pull-right"
+        <p style={{ display: 'flex', justifyContent: 'space-between'}} >
+          <span>{this.props.countCompleteItem()} Completed</span>
+          <span className="btn"
             onClick={this.props.onHideCompleteList}
           >{this.props.isHide ? 'Show' : 'Hide' }</span>
         </p>

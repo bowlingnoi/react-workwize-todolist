@@ -19,4 +19,20 @@ class Header extends Component {
     }
 }
 
+
+// In class  : error dont know item
+// const Header = ( { item, onCreateNewItem } ) => {
+//     console.log( item )
+//     return (
+//         <div>
+//             <h1>{item.title}
+//                 <button className="btn btn-success pull-right"
+//                 onClick={onCreateNewItem} >+ New List</button>
+//             </h1>
+            
+//         </div>
+
+//     );
+// }
+
 export default Header;
